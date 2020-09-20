@@ -1,0 +1,52 @@
+Build Caché
+Docker build -t <image_name>:<latest> .
+
+Docker guarda un snapshot de cada imagen luego de cada instrucción de build.
+docker build --no-cache -t <imagen> .
+
+docker history image -> historia de una imagen
+
+instrucción [CMD]
+
+CMD define el comando por defecto a ejecutar cuando se crea el contenedor.
+Se puede usar tanto el formato shell como exec
+solo puede especificarse una vez en el docker filesizeformat
+puede ser anulado manualmente via docker CLI.
+
+instrucción [ENTRY POINT]
+define el punto de entrada con el comando que el contenedor correra cuando se crea
+los argumentos de runtime son enviados como parametros a la instruccion entrypoint
+tambien posee forma de exec y shell
+el contenedor funciona a modo de ejecutable
+
+se utilizan para generar contenedores interactivos (tipo bash)
+
+docker search python -> busca imagenes
+
+instrucción [WORKDIR]
+La instrucción WORKDIR permite setear el directorio de trabajo para el cual las instrucciones RUN, CMD, ENTRYPOINT y COPY pueden utilizar.
+Usa sintaxis WORKDIR /RUTA/A/CARPETA
+La ruta puede ser tanto absoluta como relativa dentro del contenedor
+La instruccion puede utilizarse más de una vez
+
+instruccion [ADD]
+Posee el mismo formato que la instruccion COPY y ambos operan de manera muy similar
+ADD tiene la habilidad de descomp rimir archivos automaticamente
+ADD puede obtener archivos de una URL (no descomprime en este caso)
+Ambas instrucciones realizan checksum de los archivos añadidos para calcular la cache
+
+OTRAS instrucciones
+
+MAINTAINER : Agrega metadata sobre el dueño de la imagen
+
+ENV : permite añadir variables de entorno al contenedor
+
+LABEL : permite a gregar etiquetas al contenedor.
+
+BUENAS PRACTICAS DOCKER FILES
+Cada linea de dockerfile crea una imagen nueva, si modifica el estado de la imagen, es importante buscar el balance entre la cantidad de capas creadas y la legibilidad del docker file.
+
+No instalar paquetes innecesarios
+Utilizar un entrypoint por dockerfile
+Combinar comandos similares utilizando && y \
+Utilizar el sistema de cache de manera inteligente.
