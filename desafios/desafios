@@ -1,0 +1,7 @@
+
+# 1
+Descargar git.
+Descargar algún editor de textos sencillo, tipo vim o nano, que se pueda usar desde la consola.
+Clonar, usando git, algún programa que se haya realizado con anterioridad en el lenguaje elegido.
+Crear un shell script que ejecute el programa y comprobar que funciona correctamente.
+Una vez hecho eso, usar el contenedor para ejecutar el programa y comprobar que lo hace correctamente. Si es así, usar commit para crear una nueva imagen del programa y volver a probar a ejecutar el programa a partir de la nueva imagen.

@@ -1,0 +1,68 @@
+
+1. Actualizar e instalar paquetes base:
+
+$ sudo apt-get update
+$ sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+
+2. Agregar llave GPG oficial de docker:
+
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+$ sudo apt-key fingerprint 0EBFCD88
+
+3. Instalar repositorio psu cara arquitecturas x86_64 / amd64
+
+$ sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+
+4. Instalar docker community edition (CE)
+
+$ sudo apt-get update
+$ sudo apt-get install docker-ce
+
+5. Agregar docker al grupo de super usuario
+
+$ sudo groupadd docker
+$ sudo usermod -aG docker $USER
+
+6. Probar que docker está funcionando
+
+$ docker --version
+$ docker run hello-world
+
+Pasos adicionales:
+
+7. Instalar docker compose:
+
+$ sudo curl -L "https://github.com/docker/compose/releases/download/1.27.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+$ sudo chmod +x /usr/local/bin/docker-compose
+
+$ docker-compose --version
+
+    Instalar docker machine:
+
+$ base=https://github.com/docker/machine/releases/download/v0.14.0 &&
+  curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine &&
+  sudo install /tmp/docker-machine /usr/local/bin/docker-machine
+
+$ docker-machine version
+
+Fuentes:
+
+    https://docs.docker.com/install/linux/docker-ce/ubuntu/#os-requirements
+    https://docs.docker.com/compose/install/#install-compose
+    https://docs.docker.com/machine/install-machine/#install-machine-directly
+
+
+
+Comandos Utiles
+sudo docker run -it [imagen] -> Descarga la imagen
+sudo docker run --rm -it [imagen] -> Luego de utilizar la imagen, la borra
+sudo docker rm [NAMES] -> Elimina la imagen. Para saber el NAMES hacer: sudo docker ps -a
