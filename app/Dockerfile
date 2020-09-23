@@ -1,5 +1,9 @@
 FROM python:3
 
+MAINTAINER test@test.cl
+
+VOLUME /prueba
+
 WORKDIR /app
 
 COPY app.py requeriments.txt ./
