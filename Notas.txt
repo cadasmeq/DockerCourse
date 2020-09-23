@@ -50,3 +50,70 @@ No instalar paquetes innecesarios
 Utilizar un entrypoint por dockerfile
 Combinar comandos similares utilizando && y \
 Utilizar el sistema de cache de manera inteligente.
+
+# VOLUMENES
+Un directorio designado en el contenedor en el cual se persiste informacion independientemente dewl ciclo de vida del contenedor
+
+Los cambios de un volumen son exluidos cuando se guarda una imagen
+
+La informacion se persiste aunque se elimine el contenedor
+Pueden estan mapeadas a un directorio del host
+Pueden compartirse entre contenedores 
+Las instrucciones 'RUN' del Dockerfile no modifican la información de los volumes 
+
+docker volume create
+docker volume ls 
+docker volumne inspect
+docker rm 
+
+para montar un volumen se utiliza -v 
+
+se pueden montar directorios del host con el formato -v [host path]:[container path]:[ro|rw]
+
+instrouccion [VOLUME]
+La instruccion VOLUME crea un punto de montaje de volumenes en un dockerfile
+
+Se pueden especificar los argumentos como json o string
+
+Con este método no se pueden mapear archivos del host (debido a que el dockerfile puede ejecutarse en cualquier equipo)
+
+los volumenes son inicializados cuando el contenedor se inicia con la información existente en el directorio.
+
+los volumenes se crean con nombre aleatorio
+
+Volumenes anonimos con rutas del sistema operativo
+
+docker run -it -v /PATH/QUE/COMPARTIRÉ:/PATH/EN/CONTENEDOR ubuntu bash
+
+
+# ASPECTOS DE SEGURIDAD
+(!) pendiente
+
+# MODELO DE RED DE DOCKER
+Cuando docker inicia, crea una interfaz virtual docker0 en el equipo del host.
+docker 0 es asignado un rango de IP de la subnet privada definida por la RFC 1918
+
+comando docker network nos permite interactuar con las redes en docker y los contenedores dentro de ellas
+
+docker network create
+docker network connect
+docker network ls
+docker network rm
+docker network disconnect
+docker network inspect
+
+docker run --net=host -it app bash
+
+
+# mismas redes (default bridge) pueden comunicarse
+# para concectar un contenedor a dos redes se utiliza:
+docker run -d --net=mi_red --name ubuntu ubuntu
+docker network connect bridge ubuntu
+
+# linkear dos contenedores --link
+docker run -d -net=mi_red --link redis ubuntu
+
+#inspect redes
+docker network inspect
+docker network ls
+

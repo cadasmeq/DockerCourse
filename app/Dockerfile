@@ -8,7 +8,7 @@ WORKDIR /app
 
 COPY app.py requeriments.txt ./
 
-RUN pip install -r ./requeriments.txt
+RUN pip install -r ./requeriments.txt && apt update && apt install net-tools -y
 
 CMD python app.py
 
