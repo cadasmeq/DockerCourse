@@ -1,0 +1,26 @@
+# Orquestación 
+
+Si cuentas con una gran cantidad de servicios, necesitarás orquestación.
+
+SI quieres integrar diferentes nubes
+
+Quieres monitorización y niveles de servicios
+
+1. Nodos
+Ejecutan servidores Docker. (1 Servidor con servicio = nodo)
+
+2. Tareas
+COntenedores de docker ejecutandose
+
+3. Clusters
+COnjunto de nodos gestionados por uno solo
+
+# Modo Swarm
+Orquistación de Docker incluida en la edición Community
+
+- Seguridad por defecto
+* Descubrimiento de servicio
+* Equilibrado de carga
+* Configuración distribuida.
+
+

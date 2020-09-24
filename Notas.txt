@@ -117,3 +117,13 @@ docker run -d -net=mi_red --link redis ubuntu
 docker network inspect
 docker network ls
 
+
+# DOCKER MACHINE
+docher machine es una herramienta para provisionar hosts de docker y configurar el ENgine en los mismos.
+
+- Crea hosts dfe docker adicionales en el entorno local
+- Crea hosts dse docker en clouds providers: Amazon AWS, DigitalOcean
+- Machine crea el servidor, instala y configura docker.
+
+docker-machine create
+docker-machine --driver 

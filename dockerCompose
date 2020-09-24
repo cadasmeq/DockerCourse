@@ -1,0 +1,53 @@
+# Herramientas básicas en arquitecturas de microservicios
+
+Las arquitecturas de microservicios crean aplicaciones a base de diferentes servicios unidos por sistemas de colas de mensajes. Tanto las herramientas que se usan en los microservicios como las que se usan para coordinarlas y que funcionen correctamente, son diferentes de las pilas tradicionales que incluyen una base de datos SQL, algún lenguaje de programación y marco web y eventualmente algún marco front-end.
+
+Dividiremos estas herramientas entre las de desarrollo y despliegue y las que se usan dentro de los microservicios o como parte de la arquitectura de microservicios.
+
+
+# Deploy and Development
+
+Las herramientas de despliegue se usan generalmente en el contexto del trabajo con máquinas virtuales; Docker tiene sus propias herramientas de despliegue pero en un entorno donde se usen ambas cosas, conviene conocerlas.
+
+Las herramientas de despliegue toman el código fuente localmente, le aplican transformaciones, y lo copian en el destino, asu vez aplicandole las transformaciones o adaptaciones necesarias. Se aseguran de que los servicios se inicien en la secuencia correcta o que estén ejecutandose y permiten rehacer despliegues de forma fácil y en los objetivos correctos. Se usan diferentes herramientas de este tipo, pero las principales son Fabric, Capistrano y Flightplan.
+
+Cuando se despliega un servicio web, las herramientas que se aseguran de controlar los procesos que se estan ejecutando o incluso de que haya un número de copias en funcionamiento se denominan supervisores; supervisord es un ejemplo de unas de ellas, pero también pm2, escrita en JS. Estas herramientas sí se pueden usar, dentro de un contenedor, para asegurarse de que se están ejecutando las copias que sean convenientes, aunque si se usan sistemas de orquestación como Swarm, DOcker CLoud o Kubernetes este control se hará a nivel del propio contendor.
+
+# El servicio en el microservicio
+
+Los microservicios se conectan entre sí con buses de mensajerías tales como Kafka, RabbitMQ o sistemas que desacoplan el inicio de alún proceso que requiera cierto tiempo de la respuesta del usuario; de esta forma se trabaja de forma asíncrona y se puede responder al usuario más fácilmente de forma concurrente.
+
+Dentro del microservicio, se usan sistema de log o registro tales como Logstash o sistemas en la nube tales como Logz.io o Papertrail; los logs son imprescindibles para concer la prestaciones del sistema completo, ver tendencias y añadir analítica a las visitas y el uso del sistemas.
+
+Los sistemas de gestión de bases de datos tipo SQL se han modernizado y hoy en día se convierten en sistema NoSQL, que ha venido a significar No Sólo SQL. PostgreSQL sigue esta tendencia, pero también MariaDB, más tradicional, o MySQL. En bases de datos que no usan SQL y que antes se denominaban NoSQL la más popular es MongoDB, pero también se usan sistemas clave-valor tales como Redis. Un sistema de microseervicios, a diferencias de los monolíticos, usará diferentes almacenes de datos, dependiendo del servicio que ofrezcan y qué quiera obtenerse.
+
+# Resumen
+
+El mundo de los servicios es un mundo nuevo no sólo en términos de arquitectura de la aplicación, sino también en qué tipo de servicios se usan dentro de esas aplicaciones. A la hora de diseñar una nueva aplicación nativa en la nube merece la pena conocer todas las aplicaciones libre existentes y usar las que permitan trabajar con, procesar y servir esos datos con la mayor eficiencia.
+
+# Instalación 
+
+sudo curl -L https://github.com/docker/compose/releases/download/1.20.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+
+sudo chmod +x /usr/local/bin/docker-compose
+
+docker-compose --version
+
+
+
+
+# DOCKER COMPOSE
+
+Descripción de diferentes servicios y cómo se conectan entre ellos.
+
+- ordenes : docker-compose.
+- Servicios y Volumenes : Contenedores y donde se almacenan sus datos.
+- Conexión : ENtre volúmenes y entre puertos.
+
+Contenedores de Datos  
+O de bases de datos, de logs, de aplicaciones que funcionan de forma independiente.
+
+Docker Compose tiene la misma estructura de datos que podría tener un objeto en JS
+
+
+
